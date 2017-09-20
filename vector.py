@@ -30,6 +30,11 @@ class Vector:
 	def cross_product(self, other_vector):
 		"""cross_product: returns the cross product of the two vectors
 		:param other_vector: other vector to be cross producted (self.vector X other_vector)
-		:return"""
+		:return: vector"""
+		return Vector(self.j * other_vector.k - self.k * other_vector.j,
+		              self.k * other_vector.i - self.i * other_vector.k,
+		              self.i * other_vector.j - self.j * other_vector.i)
 
+	def __str__(self):
+		return str(self.i) + 'i + ' + str(self.j) + 'j + ' + str(self.k) + 'k'
 
