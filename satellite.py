@@ -19,7 +19,7 @@ def radians_to_degees(radians):
 	:return: float"""
 	return radians * 180 / math.pi
 
-class Satellite_Vector:
+class Satellite:
 	"""Class to represent a satellite orbiting a particular planet using
 	vectors"""
 
@@ -103,39 +103,3 @@ class Satellite_Vector:
 		return radians_to_degees(math.acos(self.get_angular_momentum() /
 		                                   (self.radius.magnitude() *
 		                                    self.velocity.magnitude())))
-
-
-	# def get_angular_momentum(self):
-	# 	"""get_angular_momentum: returns the vector that is the specific
-	# 	angular momentum of the orbit
-	# 	:return: vector"""
-	# 	return self.radius.cross_product(self.velocity)
-	#
-	# def get_angular_momentum_magnitude(self):
-	# 	"""get_angular_momentum_magnitude: returns the magnitude of the
-	# 	angular momentum vector in m^2 / s
-	# 	:return: float"""
-	# 	return self.get_angular_momentum().magnitude()
-	#
-	# def get_inclination(self):
-	# 	"""get_inclination: returns the inclination of the orbit in degrees
-	# 	:return: float"""
-	# 	return math.acos(Vector(0,0,1).dot_product(
-	# 		self.get_angular_momentum()) / self.get_angular_momentum_magnitude())
-	#
-	# def get_line_of_nodes(self):
-	# 	"""get_line_of_nodes: returns the line of nodes vectors
-	# 	:return: vector"""
-	# 	return Vector(0,0,1).cross_product(self.get_angular_momentum())
-	#
-	# def get_line_of_nodes_magnitude(self):
-	# 	"""get_line_of_nodes_magnitude: returns the magnitude of the line of nodes in m
-	# 	:return: float"""
-	# 	return self.get_line_of_nodes().magnitude()
-	#
-	# def get_longitude_of_ascending_node(self):
-	# 	"""get_longitude_of_ascending_node: returns the angle at which the
-	# 	ascending node occurs in degrees
-	# 	:return: float"""
-	# 	line_of_nodes = self.get_line_of_nodes()
-	# 	if line_of_nodes.j
