@@ -2,8 +2,6 @@
 planet in the Sol system
 """
 
-from enum import Enum
-
 big_G = 6.67408e-11 #in m^3/(kg s^2)
 
 class Planet:
@@ -31,7 +29,7 @@ class Planet:
 ###################################################################
 #			    			Planet Object                         #
 ###################################################################
-class Planets(Enum):
+class Planets():
 	Sun 	= Planet(1.327e20, 7.000e8, 0, 0, 0, 0)
 	Mercury = Planet(2.168e13, 2.439e6, 0.579e11, 1.117e8, 47870, 4217)
 	Venus	= Planet(3.248e14, 6.052e6, 1.082e11, 6.163e8, 35040, 10360)
