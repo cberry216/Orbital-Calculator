@@ -12,7 +12,7 @@ def degrees_to_radians(degrees):
 	:return: float"""
 	return degrees * math.pi / 180
 
-def radians_to_degees(radians):
+def radians_to_degrees(radians):
 	"""radians_to_degrees: returns the number of degrees in the given
 	radians
 	:param radians: radians to convert
@@ -40,6 +40,11 @@ class Satellite:
 		angular momentum of the orbit
 		:return: Vector"""
 		return self.radius.cross_product(self.velocity)
+
+	def get_eccentricity_vector(self):
+		"""get_eccentricity_vector: returns the vector of the eccentricity
+		:return: Vector"""
+		return self.velocity.cross_product(self.get_angular_momentum_vector) / self.planet.mu
 
 	def get_angular_momentum(self):
 		"""get_angular_momentum: returns the angular momentum of the orbit
