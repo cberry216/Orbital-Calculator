@@ -38,3 +38,11 @@ class Vector:
 	def __str__(self):
 		return str(self.i) + 'i + ' + str(self.j) + 'j + ' + str(self.k) + 'k'
 
+	def __div__(self, other):
+		return Vector(self.i / other, self.j / other, self.k/ other)
+
+	def __sub__(self, other):
+		return Vector(self.i - other.i, self.j - other.j, self.k - other.k)
+
+
+

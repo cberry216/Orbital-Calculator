@@ -44,7 +44,9 @@ class Satellite:
 	def get_eccentricity_vector(self):
 		"""get_eccentricity_vector: returns the vector of the eccentricity
 		:return: Vector"""
-		return self.velocity.cross_product(self.get_angular_momentum_vector) / self.planet.mu
+		return (self.velocity.cross_product(
+			self.get_angular_momentum_vector())\
+		       / self.planet.mu) - (self.radius / self.radius.magnitude())
 
 	def get_angular_momentum(self):
 		"""get_angular_momentum: returns the angular momentum of the orbit
@@ -55,15 +57,15 @@ class Satellite:
 	def get_specific_energy(self):
 		"""get_specigic_energy: returns the specific energy of the orbi
 	 	:return: float"""
-		return self.velocity.magnitude() ** 2 / 2 - self.planet.mu / \
-		                                            self.radius.magnitude()
+		return (self.velocity.magnitude() ** 2 / 2) - (self.planet.mu / \
+		                                            self.radius.magnitude())
 
 	def get_eccentricity(self):
 		"""get_eccentricity: returns the eccentricity of the orbit
 	 	:return: float"""
-		return math.sqrt(1 + (2 * self.get_specific_energy() *
+		return math.sqrt(1 + ((2 * self.get_specific_energy() *
 		                      self.get_angular_momentum() ** 2) /
-		                 self.planet.mu ** 2)
+		                 self.planet.mu ** 2))
 
 	def get_orbital_parameter(self):
 		"""get_orbital_parameter: returns the orbital parameter of the orbit
@@ -92,19 +94,56 @@ class Satellite:
 	def get_inclination(self):
 		"""get_inclination: returns tha angle of inclination of the orbit in degrees
 		:return: float"""
-		return radians_to_degees(math.acos(Vector(0,0,1).dot_product(
+		return radians_to_degrees(math.acos(Vector(0,0,1).dot_product(
 			self.get_angular_momentum_vector())/self.get_angular_momentum()))
 
 	def get_true_anomaly(self):
 		"""get_true_anomaly: returns the position of the satellite along its orbit in degrees
 		:return: float"""
-		return radians_to_degees(math.acos((1/self.get_eccentricity()) * (
+		return radians_to_degrees(math.acos((1/self.get_eccentricity()) * (
 			self.get_orbital_parameter() / self.radius.magnitude() - 1)))
 
 	def get_elevation_angle(self):
 		"""get_elevation_angle: return the elevation angle of the satellite
 		(i.e. the angle between the velocity vector and the local horizontal plane in degrees
 		:return: float"""
-		return radians_to_degees(math.acos(self.get_angular_momentum() /
+		return radians_to_degrees(math.acos(self.get_angular_momentum() /
 		                                   (self.radius.magnitude() *
 		                                    self.velocity.magnitude())))
+
+	def get_elevation_angle_at_angle(self, anamoly):
+		"""get_elevation_angle_at_angle: returns the elevation angle of
+		the orbit at the specified angle, which is equal to arccos(h/rv).
+		:param anamoly: angle at which the orbit is at in degrees
+		:return: float"""
+		#TODO
+
+	def get_radius_vector_at_angle(self, anamoly):
+		"""get_radius_vector_at_angle: returns the radius vector when the
+		orbit is at the specified angle
+		:param anamoly: angle at which the orbit is at in degrees
+		:return: Vector"""
+		#TODO
+
+	def get_parallel_angle_at_angle(self, anamoly):
+		"""get_parallel_angle_at_angle: returns the angle between the
+		velocity vector and the and imaginary line going through the
+		satellite and parallel to the eccentricty vector. This angle is
+		equal to 180 - (true anamoly) - (zenith angle), the zenith angle
+		being equal to 90 - (elevation angle)
+		:param anamoly: the angle at which the orbit is at in degrees
+		:return: float"""
+		#TODO
+
+	def get_velocity_vector_at_angle(self, anamoly):
+		"""get_velocity_vector_at_angle: returns the velocity vector when
+		the orbit is at the specified angle
+		:param anamoly: angle at which the orbit is at in degrees
+		:return: Vector"""
+		#TODO
+
+
+#TESTS
+sat1 = Satellite(Vector(7e6,0,0), Vector(0,7793.52,0))
+sat2 = Satellite(Vector(-5.00184e5, 7.483302e6, 0), Vector(
+	-7290.169616546589, 0, 0))
