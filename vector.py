@@ -38,6 +38,9 @@ class Vector:
 	def __str__(self):
 		return str(self.i) + 'i + ' + str(self.j) + 'j + ' + str(self.k) + 'k'
 
+	def __eq__(self, other):
+		return self.i == other.i and self.j == other.j and self.k == other.k
+
 	def __div__(self, other):
 		return Vector(self.i / other, self.j / other, self.k/ other)
 

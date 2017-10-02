@@ -111,34 +111,48 @@ class Satellite:
 		                                   (self.radius.magnitude() *
 		                                    self.velocity.magnitude())))
 
-	def get_elevation_angle_at_angle(self, anamoly):
+	def get_radius_at_angle(self, anomaly):
+		"""get_radius_at_angle: returns the magnitude of the radius at the
+		given angle
+		:param anomaly: the angle at which the orbir is at in degrees
+		:return: float"""
+		return self.get_orbital_parameter() / (1 + (self.get_eccentricity()
+		                                            * math.cos(
+			degrees_to_radians(anomaly))))
+
+	def get_radius_vector_at_angle(self, anomaly):
+		"""get_radius_vector_at_angle: returns the radius vector when the
+		orbit is at the specified angle
+		:param anomaly: angle at which the orbit is at in degrees
+		:return: Vector"""
+		new_radius = self.get_radius_at_angle(anomaly)
+		rad_anomaly = degrees_to_radians(anomaly)
+		inclination = degrees_to_radians(self.get_inclination())
+		return Vector(new_radius * math.cos(inclination) * math.cos(
+			rad_anomaly), new_radius * math.cos(inclination) * math.cos(
+			rad_anomaly), new_radius * math.sin(inclination))
+
+	def get_elevation_angle_at_angle(self, anomaly):
 		"""get_elevation_angle_at_angle: returns the elevation angle of
 		the orbit at the specified angle, which is equal to arccos(h/rv).
-		:param anamoly: angle at which the orbit is at in degrees
+		:param anomaly: angle at which the orbit is at in degrees
 		:return: float"""
 		#TODO
 
-	def get_radius_vector_at_angle(self, anamoly):
-		"""get_radius_vector_at_angle: returns the radius vector when the
-		orbit is at the specified angle
-		:param anamoly: angle at which the orbit is at in degrees
-		:return: Vector"""
-		#TODO
-
-	def get_parallel_angle_at_angle(self, anamoly):
+	def get_parallel_angle_at_angle(self, anomaly):
 		"""get_parallel_angle_at_angle: returns the angle between the
 		velocity vector and the and imaginary line going through the
 		satellite and parallel to the eccentricty vector. This angle is
 		equal to 180 - (true anamoly) - (zenith angle), the zenith angle
 		being equal to 90 - (elevation angle)
-		:param anamoly: the angle at which the orbit is at in degrees
+		:param anomaly: the angle at which the orbit is at in degrees
 		:return: float"""
 		#TODO
 
-	def get_velocity_vector_at_angle(self, anamoly):
+	def get_velocity_vector_at_angle(self, anomaly):
 		"""get_velocity_vector_at_angle: returns the velocity vector when
 		the orbit is at the specified angle
-		:param anamoly: angle at which the orbit is at in degrees
+		:param anomaly: angle at which the orbit is at in degrees
 		:return: Vector"""
 		#TODO
 
