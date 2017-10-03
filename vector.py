@@ -41,7 +41,7 @@ class Vector:
 	def __eq__(self, other):
 		return self.i == other.i and self.j == other.j and self.k == other.k
 
-	def __div__(self, other):
+	def __truediv__(self, other):
 		return Vector(self.i / other, self.j / other, self.k/ other)
 
 	def __sub__(self, other):
