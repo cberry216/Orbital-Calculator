@@ -1,6 +1,8 @@
-import unittest
 import math
+import unittest
+
 from vector import Vector
+
 
 class VectorTest(unittest.TestCase):
 	""" Test Class for vector.py"""

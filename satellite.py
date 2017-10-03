@@ -1,7 +1,7 @@
 """satellite.py - module to house the class for a satellite using vectors
 and satellites using single units for any planet in the solar system"""
 
-from planets import Planets
+from planet import Planets
 from vector import Vector
 import math 
 
@@ -82,8 +82,7 @@ class Satellite:
 		"""get_radius_periapsis: returns the radius of the satellite at
 	 	periapsis
 	 	:return: float"""
-		return self.get_angular_momentum() ** 2 / (self.planet.mu * (1 +
-		                                                             self.get_eccentricity()))
+		return self.get_semimajor_axis() * (1 - self.get_eccentricity())
 
 	def get_radius_apoapsis(self):
 		"""get_radius_apoapsis: returns the radius of the satellite at the
@@ -100,8 +99,11 @@ class Satellite:
 	def get_true_anomaly(self):
 		"""get_true_anomaly: returns the position of the satellite along its orbit in degrees
 		:return: float"""
-		return radians_to_degrees(math.acos((1/self.get_eccentricity()) * (
-			self.get_orbital_parameter() / self.radius.magnitude() - 1)))
+		if self.radius.magnitude() == round(self.get_radius_periapsis(), 0):
+			return 0
+		return radians_to_degrees(math.acos((1 / self.get_eccentricity()) *
+		                                    ((self.get_orbital_parameter()
+		                                      / self.radius.magnitude()) - 1)))
 
 	def get_elevation_angle(self):
 		"""get_elevation_angle: return the elevation angle of the satellite
@@ -129,15 +131,27 @@ class Satellite:
 		rad_anomaly = degrees_to_radians(anomaly)
 		inclination = degrees_to_radians(self.get_inclination())
 		return Vector(new_radius * math.cos(inclination) * math.cos(
-			rad_anomaly), new_radius * math.cos(inclination) * math.cos(
+			rad_anomaly), new_radius * math.cos(inclination) * math.sin(
 			rad_anomaly), new_radius * math.sin(inclination))
+
+	def get_velocity_at_angle(self, anomaly):
+		"""get_velocity_at_angle: returns the velocity magnitude of the
+		orbit at the specified angle
+		:param anomaly: the angle at which the orbit is at in degrees
+		:return: float"""
+		return math.sqrt(2 * (self.get_specific_energy() + self.planet.mu /
+		                      self.get_radius_at_angle(anomaly)))
+
 
 	def get_elevation_angle_at_angle(self, anomaly):
 		"""get_elevation_angle_at_angle: returns the elevation angle of
 		the orbit at the specified angle, which is equal to arccos(h/rv).
 		:param anomaly: angle at which the orbit is at in degrees
 		:return: float"""
-		#TODO
+		return radians_to_degrees(math.acos(self.get_angular_momentum() / (
+			self.get_radius_at_angle(anomaly) * self.get_velocity_at_angle(
+				anomaly))))
+
 
 	def get_parallel_angle_at_angle(self, anomaly):
 		"""get_parallel_angle_at_angle: returns the angle between the
@@ -147,17 +161,35 @@ class Satellite:
 		being equal to 90 - (elevation angle)
 		:param anomaly: the angle at which the orbit is at in degrees
 		:return: float"""
-		#TODO
+		return -(anomaly - 90 - self.get_elevation_angle_at_angle(anomaly))
+
+	#def get_semiminor_radius(self):
+	#	"""get_semiminor_radius: returns the radius of the orbit when the
+	#	satellite is at the semiminor axis
+	#	:return: float"""
+	#	return math.sqrt((self.get_semimajor_axis() * math.sqrt(1 -
+	#
+		# self.get_eccentricity() ** 2)) ** 2 +
+	#	                 (self.get_semimajor_axis() -
+	#	                  self.get_radius_periapsis()) ** 2)
 
 	def get_velocity_vector_at_angle(self, anomaly):
 		"""get_velocity_vector_at_angle: returns the velocity vector when
 		the orbit is at the specified angle
 		:param anomaly: angle at which the orbit is at in degrees
 		:return: Vector"""
-		#TODO
+		velocity = self.get_velocity_at_angle(anomaly)
+		parallel_ang = degrees_to_radians(self.get_parallel_angle_at_angle(
+			anomaly))
+		inclination = degrees_to_radians(self.get_inclination())
 
+		return Vector(-1 * velocity * math.cos(inclination) * math.cos(
+			parallel_ang), velocity * math.cos(inclination) * math.sin(
+			parallel_ang), velocity * math.sin(inclination))
 
-#TESTS
-sat1 = Satellite(Vector(7e6,0,0), Vector(0,7793.52,0))
-sat2 = Satellite(Vector(-5.00184e5, 7.483302e6, 0), Vector(
-	-7290.169616546589, 0, 0))
+#sat1 = Satellite(Vector(7e6, 0, 0), Vector(0, 7793.526006824358, 0))
+#sat2 = Satellite(Vector(-5.e5, 7483314.773547883, 0), Vector(
+#	-7290.176038112294, 0, 0))
+#sat3 = Satellite(Vector(-3862068.9655172424, 6689299.670610837,
+#		                             0), Vector(-6327.554537779295,
+#		                                        -3166.119940272407, 0))

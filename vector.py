@@ -47,5 +47,8 @@ class Vector:
 	def __sub__(self, other):
 		return Vector(self.i - other.i, self.j - other.j, self.k - other.k)
 
+	def __abs__(self):
+		return self.magnitude()
+
 
 
