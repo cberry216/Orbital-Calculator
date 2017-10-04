@@ -42,7 +42,15 @@ class Vector:
 		return self.i == other.i and self.j == other.j and self.k == other.k
 
 	def __truediv__(self, other):
+		#if type(other) != type(int()) or type(other) != type(float):
+		#	raise TypeError("Cannot divide vector by non-numeric value")
 		return Vector(self.i / other, self.j / other, self.k/ other)
+
+	def __mul__(self, other):
+		return Vector(self.i * other, self.j * other, self.k * other)
+
+	def __rmul__(self, other):
+		return Vector(self.i * other, self.j * other, self.k * other)
 
 	def __sub__(self, other):
 		return Vector(self.i - other.i, self.j - other.j, self.k - other.k)

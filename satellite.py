@@ -187,9 +187,12 @@ class Satellite:
 			parallel_ang), velocity * math.cos(inclination) * math.sin(
 			parallel_ang), velocity * math.sin(inclination))
 
-#sat1 = Satellite(Vector(7e6, 0, 0), Vector(0, 7793.526006824358, 0))
-#sat2 = Satellite(Vector(-5.e5, 7483314.773547883, 0), Vector(
-#	-7290.176038112294, 0, 0))
-#sat3 = Satellite(Vector(-3862068.9655172424, 6689299.670610837,
-#		                             0), Vector(-6327.554537779295,
-#		                                        -3166.119940272407, 0))
+sat1 = Satellite(Vector(7e6, 0, 0), Vector(0, 7793.526006824358, 0))
+sat2 = Satellite(Vector(-5.e5, 7483314.773547883, 0), Vector(
+	-7290.176038112294, 0, 0))
+sat3 = Satellite(Vector(-3862068.9655172424, 6689299.670610837,
+		                             0), Vector(-6327.554537779295,
+		                                        -3166.119940272407, 0))
+sat4 = Satellite(Vector(7e6 * math.cos(degrees_to_radians(30)), 0,
+                        7e6 * math.sin(degrees_to_radians(30))), Vector(0,
+		                                                         7793.526006824358, 0))
