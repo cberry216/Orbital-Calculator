@@ -113,6 +113,19 @@ class Satellite:
 		                                   (self.radius.magnitude() *
 		                                    self.velocity.magnitude())))
 
+	def get_nodes_vector(self):
+		"""get_nodes_vector: returns the vector that points between the
+		ascending and descending node
+		:return: Vector"""
+		return Vector(0,0,1).cross_product(self.get_angular_momentum_vector())
+
+	def get_longitude_of_ascending_node(self):
+		"""get_longitude_of_ascending_node: returns the angle where the
+		satellite passes from below the reference plane to above the
+		reference plane in degrees.
+		:return: float"""
+		return
+
 	def get_radius_at_angle(self, anomaly):
 		"""get_radius_at_angle: returns the magnitude of the radius at the
 		given angle
@@ -129,10 +142,12 @@ class Satellite:
 		:return: Vector"""
 		new_radius = self.get_radius_at_angle(anomaly)
 		rad_anomaly = degrees_to_radians(anomaly)
-		inclination = degrees_to_radians(self.get_inclination())
-		return Vector(new_radius * math.cos(inclination) * math.cos(
-			rad_anomaly), new_radius * math.cos(inclination) * math.sin(
-			rad_anomaly), new_radius * math.sin(inclination))
+		#inc_deg = degrees_to_radians(self.get_true_anomaly())
+		if self.get_radius_at_angle() == 0:
+			return Vector(new_radius * math.cos(rad_anomaly), new_radius *
+			              math.sin(rad_anomaly), 0)
+		else:
+			pass
 
 	def get_velocity_at_angle(self, anomaly):
 		"""get_velocity_at_angle: returns the velocity magnitude of the

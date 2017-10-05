@@ -144,6 +144,20 @@ class SatelliteTest(unittest.TestCase):
 		                       3.4179810919120652)
 		self.assertAlmostEqual(self.sat4.get_elevation_angle(), 0)
 
+	def test_get_nodes_vector(self):
+		self.assertAlmostEqual(self.sat1.get_nodes_vector(), Vector(0, 0, 0))
+		self.assertAlmostEqual(self.sat2.get_nodes_vector(), Vector(0, 0, 0))
+		self.assertAlmostEqual(self.sat3.get_nodes_vector(), Vector(0, 0, 0))
+		self.assertAlmostEqual(self.sat4.get_nodes_vector(), Vector(0,
+		                                                            -27277341023.88525, 0))
+
+	def test_get_longitude_of_ascending_node(self):
+		self.assertAlmostEqual(self.sat1.get_longitude_of_ascending_node(), 0)
+		self.assertAlmostEqual(self.sat1.get_longitude_of_ascending_node(), 0)
+		self.assertAlmostEqual(self.sat1.get_longitude_of_ascending_node(), 0)
+		self.assertAlmostEqual(self.sat4.get_longitude_of_ascending_node(), 0)
+		self.assertEqual(True, False)
+
 	def test_get_radius_at_angle(self):
 		self.assertAlmostEqual(self.sat1.get_radius_at_angle(0), 7e6)
 		self.assertAlmostEqual(self.sat1.get_radius_at_angle(

@@ -4,8 +4,9 @@ import numpy as np
 
 from satellite import *
 
-sat1 = Satellite(Vector(7e6, 0, 0), Vector(0, 0, -7793.526006824358))
-print(sat1.get_inclination())
+sat1 = Satellite(Vector(7e6 * math.cos(degrees_to_radians(30)), 0,
+                        7e6 * math.sin(degrees_to_radians(30))), Vector(0,
+		                                                         7793.526006824358, 0))
 
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
@@ -26,10 +27,7 @@ radius_vectors = []
 for i in range(0, 360):
 	radius_vectors.append(sat1.get_radius_vector_at_angle(i))
 
-for i in radius_vectors:
-	print(i)
-
-ax.plot_surface(x, y, z, alpha=0.5, color="green")
+ax.plot_surface(x, y, z, alpha=0.25, color="green")
 ax.plot([0,sat1.radius.i], [0,sat1.radius.j], [0,sat1.radius.k], color="red")
 ax.plot_wireframe(list(map(lambda x: x.i, radius_vectors)),
                   list(map(lambda x: x.j, radius_vectors)),
