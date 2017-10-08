@@ -212,7 +212,7 @@ class Satellite:
 
 		return Vector(-1 * velocity * math.cos(inclination) * math.cos(
 			parallel_ang), velocity * math.sin(parallel_ang), velocity *
-		              math.cos(parallel_ang) * math.sin(inclination))
+		              math.cos(parallel_ang) * math.sin(inclination) * -1)
 
 sat1 = Satellite(Vector(7e6, 0, 0), Vector(0, 7793.526006824358, 0))
 sat2 = Satellite(Vector(-5.e5, 7483314.773547883, 0), Vector(
