@@ -4,6 +4,7 @@ import numpy as np
 
 from satellite import *
 
+sat2 = Satellite(Vector(7e6,0,0), Vector(0,7793.526006824358,0))
 sat1 = Satellite(Vector(7e6 * math.cos(degrees_to_radians(30)), 0,
                         7e6 * math.sin(degrees_to_radians(30))), Vector(0,
 		                                                         7793.526006824358, 0))

@@ -155,8 +155,7 @@ class SatelliteTest(unittest.TestCase):
 		self.assertAlmostEqual(self.sat1.get_longitude_of_ascending_node(), 0)
 		self.assertAlmostEqual(self.sat1.get_longitude_of_ascending_node(), 0)
 		self.assertAlmostEqual(self.sat1.get_longitude_of_ascending_node(), 0)
-		self.assertAlmostEqual(self.sat4.get_longitude_of_ascending_node(), 0)
-		self.assertEqual(True, False)
+		self.assertAlmostEqual(self.sat4.get_longitude_of_ascending_node(), 270)
 
 	def test_get_radius_at_angle(self):
 		self.assertAlmostEqual(self.sat1.get_radius_at_angle(0), 7e6)
@@ -182,7 +181,15 @@ class SatelliteTest(unittest.TestCase):
 		self.assertAlmostEqual(self.sat1.get_radius_vector_at_angle(180),
 		                       Vector(-8e6,0,0))
 
-		self.assertEqual(True, False)
+		self.assertAlmostEqual(self.sat4.get_radius_vector_at_angle(0),
+		                       Vector(6062177.826491071, 0,
+		                              3499999.9999999995))
+		self.assertAlmostEqual(self.sat4.get_radius_vector_at_angle(90),
+		                       Vector(0, 7466666.666666667, 0))
+		self.assertAlmostEqual(self.sat4.get_radius_vector_at_angle(180),
+		                       Vector(-6928203.23027551, 0, -3999999.9999999995))
+		self.assertAlmostEqual(self.sat4.get_radius_vector_at_angle(270),
+		                       Vector(0, -7466666.666666667, 0))
 
 
 	def test_get_elevation_angle_at_angle(self):
@@ -249,4 +256,12 @@ class SatelliteTest(unittest.TestCase):
 		                       Vector(-6327.554537779295,-3166.119940272407, 0))
 		self.assertAlmostEqual(self.sat1.get_velocity_vector_at_angle(180),
 		                       Vector(0, -6819.335255971313, 0))
-		self.assertEqual(True, False)
+
+		self.assertAlmostEqual(self.sat4.get_velocity_vector_at_angle(0),
+		                       Vector(0, 7793.526006824358, 0))
+		self.assertAlmostEqual(self.sat4.get_velocity_vector_at_angle(180),
+		                       Vector(0, -6819.335255971313, 0))
+		self.assertAlmostEqual(self.sat4.get_velocity_vector_at_angle(
+			93.82255372927428).j, 0)
+		self.assertAlmostEqual(self.sat4.get_velocity_vector_at_angle(
+			93.82255372927428).magnitude(), self.sat4.get_velocity_at_angle(93.82255372927428))

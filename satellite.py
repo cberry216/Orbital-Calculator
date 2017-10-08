@@ -124,7 +124,15 @@ class Satellite:
 		satellite passes from below the reference plane to above the
 		reference plane in degrees.
 		:return: float"""
-		return
+		line_of_nodes = self.get_nodes_vector()
+		if self.get_inclination() == 0:
+			return 0
+		if line_of_nodes.j >= 0:
+			return radians_to_degrees(math.acos((Vector(1,0,0).dot_product(
+				line_of_nodes)) / line_of_nodes.magnitude()))
+		else:
+			return 360 - radians_to_degrees(math.acos((Vector(1,0,0).dot_product(
+				line_of_nodes)) / line_of_nodes.magnitude()))
 
 	def get_radius_at_angle(self, anomaly):
 		"""get_radius_at_angle: returns the magnitude of the radius at the
@@ -137,17 +145,21 @@ class Satellite:
 
 	def get_radius_vector_at_angle(self, anomaly):
 		"""get_radius_vector_at_angle: returns the radius vector when the
-		orbit is at the specified angle
+		orbit is at the specified angle. The vector formula used is:
+		r = <r_x, r_y, r_z> =
+		    <r * cos(θ) * cos(i),
+		     r * sin(θ),
+		     r * cos(θ) * sin(i) >
 		:param anomaly: angle at which the orbit is at in degrees
 		:return: Vector"""
 		new_radius = self.get_radius_at_angle(anomaly)
-		rad_anomaly = degrees_to_radians(anomaly)
-		#inc_deg = degrees_to_radians(self.get_true_anomaly())
-		if self.get_radius_at_angle() == 0:
-			return Vector(new_radius * math.cos(rad_anomaly), new_radius *
-			              math.sin(rad_anomaly), 0)
-		else:
-			pass
+		inc = self.get_inclination()
+		return Vector(new_radius * math.cos(degrees_to_radians(anomaly)) *
+		                                    math.cos(degrees_to_radians(inc)),
+		              new_radius * math.sin(degrees_to_radians(anomaly)),
+		              new_radius * math.cos(degrees_to_radians(
+			              anomaly)) * math.sin(degrees_to_radians(inc)))
+
 
 	def get_velocity_at_angle(self, anomaly):
 		"""get_velocity_at_angle: returns the velocity magnitude of the
@@ -199,8 +211,8 @@ class Satellite:
 		inclination = degrees_to_radians(self.get_inclination())
 
 		return Vector(-1 * velocity * math.cos(inclination) * math.cos(
-			parallel_ang), velocity * math.cos(inclination) * math.sin(
-			parallel_ang), velocity * math.sin(inclination))
+			parallel_ang), velocity * math.sin(parallel_ang), velocity *
+		              math.cos(parallel_ang) * math.sin(inclination))
 
 sat1 = Satellite(Vector(7e6, 0, 0), Vector(0, 7793.526006824358, 0))
 sat2 = Satellite(Vector(-5.e5, 7483314.773547883, 0), Vector(
