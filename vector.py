@@ -57,6 +57,3 @@ class Vector:
 
 	def __abs__(self):
 		return self.magnitude()
-
-
-
