@@ -7,12 +7,15 @@ from satellite import *
 class OrbitPlotter:
 	"""Class the represent a 3D orbit plotter"""
 
-	def __init__(self, satellite):
+	def __init__(self, satellite, fig=None):
 		"""__init__: constructor for ThreeDimOrbitPlotter
 		:param satellite: satellite's orbit that will be plotted"""
 		self.satellite = satellite
-		self.fig = plt.figure(1)
-		self.ax_3d = self.fig.add_subplot(221, projection="3d", aspect=.8)
+		if fig == None:
+			self.fig = plt.figure(1)
+		else:
+			self.fig = fig
+		self.ax_3d = self.fig.add_subplot(121, projection="3d", aspect=.8)
 		self.ax_2d_xy = self.fig.add_subplot(222, aspect=1)
 		self.ax_2d_xz = self.fig.add_subplot(224, aspect=1)
 
@@ -105,6 +108,11 @@ class OrbitPlotter:
 		self.plot_planet_2d()
 		self.plot_orbit_2d()
 		self.plot_current_pos_2d()
+
+	def get_figure(self):
+		"""get_figure: returns the figure after plotting
+		:return: Figure"""
+		return self.fig
 
 
 

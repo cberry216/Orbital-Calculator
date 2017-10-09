@@ -57,8 +57,7 @@ class Satellite:
 	def get_specific_energy(self):
 		"""get_specigic_energy: returns the specific energy of the orbi
 	 	:return: float"""
-		return (self.velocity.magnitude() ** 2 / 2) - (self.planet.mu / \
-		                                            self.radius.magnitude())
+		return (self.velocity.magnitude() ** 2 / 2) - (self.planet.mu / self.radius.magnitude())
 
 	def get_eccentricity(self):
 		"""get_eccentricity: returns the eccentricity of the orbit
@@ -160,6 +159,13 @@ class Satellite:
 		              new_radius * math.cos(degrees_to_radians(
 			              anomaly)) * math.sin(degrees_to_radians(inc)))
 
+	def get_velocity_at_radius(self, new_radius):
+		"""get_velocity_at_radius: return the velocity of the satellite at
+		the given radius
+		:param new_radius: radius of the orbit
+		:return: float"""
+		return math.sqrt(2 * (self.get_specific_energy() + (self.planet.mu /
+		 new_radius)))
 
 	def get_velocity_at_angle(self, anomaly):
 		"""get_velocity_at_angle: returns the velocity magnitude of the

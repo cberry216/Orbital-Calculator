@@ -227,6 +227,26 @@ class SatelliteTest(unittest.TestCase):
 	#	self.assertAlmostEqual(sat2.get_semiminor_radius(), 7.5e6)
 	#	self.assertAlmostEqual(sat3.get_semiminor_radius(), 7.5e6)
 
+	def test_get_velocity_at_radius(self):
+		self.assertAlmostEqual(self.sat1.get_velocity_at_radius(7e6),
+		                       7793.526006824358)
+		self.assertAlmostEqual(self.sat1.get_velocity_at_radius(7.5e6),
+		                       7290.176038112294)
+		self.assertAlmostEqual(self.sat1.get_velocity_at_radius(
+			7724137.931034484), 7075.469023659272)
+		self.assertAlmostEqual(self.sat1.get_velocity_at_radius(8e6),
+		                       6819.335255971313)
+
+		self.assertAlmostEqual(self.sat4.get_velocity_at_radius(7e6),
+		                       7793.526006824358)
+		self.assertAlmostEqual(self.sat4.get_velocity_at_radius(7.5e6),
+		                       7290.176038112294)
+		self.assertAlmostEqual(self.sat4.get_velocity_at_radius(
+			7724137.931034484), 7075.469023659272)
+		self.assertAlmostEqual(self.sat4.get_velocity_at_radius(8e6),
+		                       6819.335255971313)
+
+
 	def test_get_velocity_at_angle(self):
 		self.assertAlmostEqual(self.sat1.get_velocity_at_angle(0),
 		                       7793.526006824358)
