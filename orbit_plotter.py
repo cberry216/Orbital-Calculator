@@ -19,10 +19,10 @@ class OrbitPlotter:
 		self.ax_2d_xy = self.fig.add_subplot(222, aspect=1)
 		self.ax_2d_xz = self.fig.add_subplot(224, aspect=1)
 
-		self.ax_2d_xz.set_xlim([self.satellite.planet.radius * -1.5,
-		                        self.satellite.planet.radius * 1.5])
-		self.ax_2d_xz.set_ylim([self.satellite.planet.radius * -1.5,
-		                        self.satellite.planet.radius * 1.5])
+		self.ax_2d_xz.set_xlim([self.satellite.get_radius_apoapsis() * -1.25,
+		                        self.satellite.get_radius_apoapsis() * 1.25])
+		self.ax_2d_xz.set_ylim([self.satellite.get_radius_apoapsis() * -1.25,
+		                        self.satellite.get_radius_apoapsis() * 1.25])
 
 		self.plot_all_3d()
 		self.plot_all_2d()
