@@ -152,10 +152,16 @@ class SatelliteTest(unittest.TestCase):
 		                                                            -27277341023.88525, 0))
 
 	def test_get_longitude_of_ascending_node(self):
-		self.assertAlmostEqual(self.sat1.get_longitude_of_ascending_node(), 0)
-		self.assertAlmostEqual(self.sat1.get_longitude_of_ascending_node(), 0)
-		self.assertAlmostEqual(self.sat1.get_longitude_of_ascending_node(), 0)
+		self.assertEqual(self.sat1.get_longitude_of_ascending_node(), "n/a")
+		self.assertEqual(self.sat1.get_longitude_of_ascending_node(), "n/a")
+		self.assertEqual(self.sat1.get_longitude_of_ascending_node(), "n/a")
 		self.assertAlmostEqual(self.sat4.get_longitude_of_ascending_node(), 270)
+
+	def test_get_argument_of_periapsis(self):
+		self.assertEqual(self.sat1.get_argument_of_periapsis(), "n/a")
+		self.assertEqual(self.sat1.get_argument_of_periapsis(), "n/a")
+		self.assertEqual(self.sat1.get_argument_of_periapsis(), "n/a")
+		self.assertAlmostEqual(self.sat4.get_argument_of_periapsis(), 90)
 
 	def test_get_radius_at_angle(self):
 		self.assertAlmostEqual(self.sat1.get_radius_at_angle(0), 7e6)

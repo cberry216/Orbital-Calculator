@@ -55,5 +55,8 @@ class Vector:
 	def __sub__(self, other):
 		return Vector(self.i - other.i, self.j - other.j, self.k - other.k)
 
+	def __round__(self, n=7):
+		return Vector(round(self.i, n), round(self.j, n), round(self.k, n))
+
 	def __abs__(self):
 		return self.magnitude()

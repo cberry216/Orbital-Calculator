@@ -1,6 +1,6 @@
 import sys
 from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QApplication, QWidget, QDialog, QLineEdit,QLabel
+from PyQt5.QtWidgets import QApplication, QDialog, QLineEdit,QLabel
 
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as \
 	FigureCanvas
@@ -58,6 +58,23 @@ class Window(QDialog):
 		self.velocity_k.move(20, 20)
 		self.velocity_k.resize(60, 40)
 
+		#Delta_V Labels
+		self.delta_v_label1 = QLabel("ΔV: ")
+		self.delta_v_label2 = QLabel("i + ")
+		self.delta_v_label3 = QLabel("j + ")
+		self.delta_v_label4 = QLabel("k @ ")
+		self.delta_v_label5 = QLabel("°")
+
+		#Delta_V Inputs
+		self.delta_v_i = QLineEdit(self)
+		self.delta_v_j = QLineEdit(self)
+		self.delta_v_k = QLineEdit(self)
+		self.delta_v_true_anomaly = QLineEdit(self)
+
+		#Delta_V Button
+		self.apply_delta_v_button = QtWidgets.QPushButton("Apply")
+		self.apply_delta_v_button.clicked.connect(self.apply_delta_v)
+
 		# Orbital Parameter Outputs
 		self.orb_param_left_curr_radius = QLabel("Current Radius: n/a")
 		self.orb_param_left_curr_velocity = QLabel("Current Velocity: n/a")
@@ -73,8 +90,6 @@ class Window(QDialog):
 		self.orb_param_left_orbital_parameter = QLabel("Orbital Parameter: "
 		                                               "n/a")
 		self.orb_param_left_true_anomaly = QLabel("True Anomaly: n/a")
-		self.orb_param_left_elevation_angle = QLabel("Elevation Angle: n/a")
-		self.orb_param_left_inclination = QLabel("Inclination: n/a")
 
 		self.orb_param_right_radius_vector = QLabel("Radius Vector: n/a")
 		self.orb_param_right_velocity_vector = QLabel("Velocity Vector: n/a")
@@ -88,8 +103,10 @@ class Window(QDialog):
 		self.orb_param_right_longitude_of_ascending_node = QLabel("Longitude "
 		                                                         "of "
 		                                                          "Ascending Node: n/a")
-		self.orb_param_right_argument_of_perigee = QLabel("Argument of "
-		                                                  "Perigee: n/a")
+		self.orb_param_right_argument_of_periapsis = QLabel("Argument of "
+		                                                  "Periapsis: n/a")
+		self.orb_param_right_elevation_angle = QLabel("Elevation Angle: n/a")
+		self.orb_param_right_inclination = QLabel("Inclination: n/a")
 
 		# Toolbar
 		self.toolbar = NavigationToolbar(self.canvas, self)
@@ -110,6 +127,8 @@ class Window(QDialog):
 		self.parameters_layout_right = QtWidgets.QVBoxLayout()
 		self.parameters_layout.addLayout(self.parameters_layout_left)
 		self.parameters_layout.addLayout(self.parameters_layout_right)
+
+		self.delta_v_layout = QtWidgets.QHBoxLayout()
 
 		# Radius Layout
 		self.horizontal_layout1.addWidget(self.radius_label1)
@@ -141,8 +160,6 @@ class Window(QDialog):
 		self.parameters_layout_left.addWidget(self.orb_param_left_eccentricity)
 		self.parameters_layout_left.addWidget(self.orb_param_left_orbital_parameter)
 		self.parameters_layout_left.addWidget(self.orb_param_left_true_anomaly)
-		self.parameters_layout_left.addWidget(self.orb_param_left_elevation_angle)
-		self.parameters_layout_left.addWidget(self.orb_param_left_inclination)
 
 		self.parameters_layout_right.addWidget(self.orb_param_right_radius_vector)
 		self.parameters_layout_right.addWidget(self.orb_param_right_velocity_vector)
@@ -151,10 +168,25 @@ class Window(QDialog):
 		self.parameters_layout_right.addWidget(self.orb_param_right_angular_momentum)
 		self.parameters_layout_right.addWidget(self.orb_param_right_specific_energy)
 		self.parameters_layout_right.addWidget(self.orb_param_right_longitude_of_ascending_node)
-		self.parameters_layout_right.addWidget(self.orb_param_right_argument_of_perigee)
+		self.parameters_layout_right.addWidget(
+			self.orb_param_right_argument_of_periapsis)
+		self.parameters_layout_right.addWidget(self.orb_param_right_elevation_angle)
+		self.parameters_layout_right.addWidget(self.orb_param_right_inclination)
 
 		self.parameters_layout.addLayout(self.parameters_layout_left)
 		self.parameters_layout.addLayout(self.parameters_layout_right)
+
+		# Delta_V Layout
+		self.delta_v_layout.addWidget(self.delta_v_label1)
+		self.delta_v_layout.addWidget(self.delta_v_i)
+		self.delta_v_layout.addWidget(self.delta_v_label2)
+		self.delta_v_layout.addWidget(self.delta_v_j)
+		self.delta_v_layout.addWidget(self.delta_v_label3)
+		self.delta_v_layout.addWidget(self.delta_v_k)
+		self.delta_v_layout.addWidget(self.delta_v_label4)
+		self.delta_v_layout.addWidget(self.delta_v_true_anomaly)
+		self.delta_v_layout.addWidget(self.delta_v_label5)
+		self.delta_v_layout.addWidget(self.apply_delta_v_button)
 
 		# Adding All the Layouts
 		self.vertical_layout.addWidget(self.toolbar)
@@ -162,11 +194,15 @@ class Window(QDialog):
 		self.vertical_layout.addLayout(self.horizontal_layout1)
 		self.vertical_layout.addLayout(self.horizontal_layout2)
 		self.vertical_layout.addWidget(self.button)
+		self.vertical_layout.addLayout(self.delta_v_layout)
 		self.vertical_layout.addLayout(self.parameters_layout)
 		self.vertical_layout.addLayout(self.parameters_layout)
 		self.setLayout(self.vertical_layout)
 
 	def plot(self):
+		"""plot: gets the values from the QLineEdits and plots the orbit on
+		the canvas
+		:return: None"""
 		radius_i_val = float(self.radius_i.text())
 		radius_j_val = float(self.radius_j.text())
 		radius_k_val = float(self.radius_k.text())
@@ -179,67 +215,98 @@ class Window(QDialog):
 		                             radius_k_val), Vector(velocity_i_val,
 		                                                   velocity_j_val, velocity_k_val))
 
+		self.draw_orbit(satellite)
+
+	def apply_delta_v(self):
+		"""apply_delta_v: will create a new satellite object with the
+		delta-v applied in the current satellites current position
+		:return: None"""
+		print("Not Implemented")
+
+	def update_parameters(self, satellite):
+		"""update_parameters: updates the values stored in the parameters
+		labels to reflect the current orbit and satellite
+		:param satellite: the given satellite to retrieve orbital parameters from
+		:return: None"""
 		self.orb_param_left_curr_radius.setText("Current Radius: " + str(
 			round(satellite.radius.magnitude(), 7)))
 		self.orb_param_left_curr_velocity.setText("Current Velocity: " +
-		                                           str(
-			                                           round(
-				                                           satellite.velocity.magnitude(), 7)))
+		                                          str(
+			                                          round(
+				                                          satellite.velocity.magnitude(),
+				                                          7)))
 		self.orb_param_left_radius_periapsis.setText("Radius Peripasis: " +
-		                                              str(
-			                                              round(
-				                                              satellite.get_radius_periapsis(), 7)))
+		                                             str(
+			                                             round(
+				                                             satellite.get_radius_periapsis(),
+				                                             7)))
 		self.orb_param_left_velocity_periapsis.setText("Velocity @ "
-		                                                "Periapsis: " + str(
+		                                               "Periapsis: " + str(
 			round(satellite.get_velocity_at_radius(
 				satellite.get_radius_periapsis()), 7)))
 		self.orb_param_left_radius_apoapsis.setText("Radius Apoapsis: " +
-		                                             str(
-			                                             round(
-				                                             satellite.get_radius_apoapsis(), 7)))
-		self.orb_param_left_velocity_apoapsis.setText("Velocity @ Apoapsis: " + str(
-			round(satellite.get_velocity_at_radius(
-				satellite.get_radius_apoapsis()), 7)))
+		                                            str(
+			                                            round(
+				                                            satellite.get_radius_apoapsis(),
+				                                            7)))
+		self.orb_param_left_velocity_apoapsis.setText(
+			"Velocity @ Apoapsis: " + str(
+				round(satellite.get_velocity_at_radius(
+					satellite.get_radius_apoapsis()), 7)))
 		self.orb_param_left_mean_radius.setText("Mean Radius: n/a")
 		self.orb_param_left_mean_velocity.setText("Mean Velocity: n/a")
 		self.orb_param_left_eccentricity.setText("Eccentricity: " + str(
 			round(satellite.get_eccentricity(), 7)))
-		self.orb_param_left_orbital_parameter.setText("Orbital Parameter: " + str(
-			round(satellite.get_orbital_parameter(), 7)))
+		self.orb_param_left_orbital_parameter.setText(
+			"Orbital Parameter: " + str(
+				round(satellite.get_orbital_parameter(), 7)))
 		self.orb_param_left_true_anomaly.setText("True Anomaly: " + str(
 			round(satellite.get_true_anomaly(), 7)))
-		self.orb_param_left_elevation_angle.setText("Elevation Angle: " +
-		                                             str(
-			                                             round(
-				                                             satellite.get_elevation_angle(), 7)))
-		self.orb_param_left_inclination.setText("Inclination: " + str(
-			round(satellite.get_inclination(), 7)))
 
 		self.orb_param_right_radius_vector.setText("Radius Vector: " + str(
-			satellite.radius))
+			round(satellite.radius, 7)))
 		self.orb_param_right_velocity_vector.setText("Velocity Vector: " +
-		                                              str(satellite.velocity))
+		                                             str(
+			                                             round(
+				                                             satellite.velocity, 7)))
 		self.orb_param_right_eccentricity_vector.setText("Eccentricity "
-		                                                  "Vector: " + str(
-			satellite.get_eccentricity_vector()))
+		                                                 "Vector: " + str(
+			round(satellite.get_eccentricity_vector(), 7)))
 		self.orb_param_right_angular_momentum_vector.setText("Angular "
-		                                                      "Momentum "
-		                                                      "Vector: " +
-		                                                      str(
-			                                                      satellite.get_angular_momentum_vector()))
+		                                                     "Momentum "
+		                                                     "Vector: " +
+		                                                     str(
+			                                                     round(
+				                                                     satellite.get_angular_momentum_vector(), 7)))
 		self.orb_param_right_angular_momentum.setText("Angular Momentum: "
-		                                               + str(
+		                                              + str(
 			round(satellite.get_angular_momentum(), 7)))
 		self.orb_param_right_specific_energy.setText("Specific Energy: " +
-		                                              str(
-			                                              round(
-				                                              satellite.get_specific_energy(), 7)))
+		                                             str(
+			                                             round(
+				                                             satellite.get_specific_energy(),
+				                                             7)))
 		self.orb_param_right_longitude_of_ascending_node.setText("Longitude "
-		                                                          "of "
-		                                                          "Ascending Node: n/a")
-		self.orb_param_right_argument_of_perigee.setText("Argument of "
-		                                                  "Perigee: n/a")
+		                                                         "of "
+		                                                         "Ascending "
+		                                                         "Node: " +
+		                                                         str(
+			                                                         satellite.get_longitude_of_ascending_node()))
+		self.orb_param_right_argument_of_periapsis.setText("Argument of "
+		                                                 "Periapsis: " + str(
+			satellite.get_argument_of_periapsis()))
+		self.orb_param_right_elevation_angle.setText("Elevation Angle: " +
+		                                            str(
+			                                            round(
+				                                            satellite.get_elevation_angle(), 7)))
+		self.orb_param_right_inclination.setText("Inclination: " + str(
+			round(satellite.get_inclination(), 7)))
 
+	def draw_orbit(self, satellite):
+		"""draw_orbit: draws the specified satellite on the parent figure
+		:param satellite: orbit to draw
+		:return: None"""
+		self.update_parameters(satellite)
 		self.figure.clear()
 		OrbitPlotter(satellite, self.figure)
 		self.canvas.draw()

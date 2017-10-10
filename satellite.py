@@ -125,13 +125,29 @@ class Satellite:
 		:return: float"""
 		line_of_nodes = self.get_nodes_vector()
 		if self.get_inclination() == 0:
-			return 0
+			return "n/a"
 		if line_of_nodes.j >= 0:
 			return radians_to_degrees(math.acos((Vector(1,0,0).dot_product(
 				line_of_nodes)) / line_of_nodes.magnitude()))
 		else:
 			return 360 - radians_to_degrees(math.acos((Vector(1,0,0).dot_product(
 				line_of_nodes)) / line_of_nodes.magnitude()))
+
+	def get_argument_of_periapsis(self):
+		"""get_argument_of_periapsis: returns the argument of periapsis of
+		the orbit in degrees
+		:return: float"""
+		eccn_vector = self.get_eccentricity_vector()
+		node_vector = self.get_nodes_vector()
+		if node_vector.magnitude() == 0:
+			return "n/a"
+		if eccn_vector.k >= 0:
+			return radians_to_degrees(math.acos((node_vector.dot_product(
+				eccn_vector))/(node_vector.magnitude() *
+			                   eccn_vector.magnitude())))
+		else: return radians_to_degrees(2 * math.pi - math.acos((node_vector.dot_product(
+				eccn_vector))/(node_vector.magnitude() *
+			                   eccn_vector.magnitude())))
 
 	def get_radius_at_angle(self, anomaly):
 		"""get_radius_at_angle: returns the magnitude of the radius at the

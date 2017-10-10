@@ -10,6 +10,8 @@ class VectorTest(unittest.TestCase):
 	def setUp(self):
 		self.v1 = Vector(1.0, 2.5, -3.4)
 		self.v2 = Vector(-2.4, 3.6, 0.5)
+		self.v3 = Vector(0.000000000000000123, 0.00000000000000003453,
+		                 0.00000000000000123412341)
 
 	def test_magnitude(self):
 		self.assertEqual(self.v1.magnitude(), math.sqrt(1 + 2.5**2 + 3.4**2))
@@ -41,6 +43,10 @@ class VectorTest(unittest.TestCase):
 	def test_subtraction(self):
 		self.assertEqual(self.v1 - self.v2, Vector(3.4, -1.1, -3.9))
 		self.assertEqual(self.v2 - self.v1, Vector(-3.4, 1.1, 3.9))
+
+	def test_round(self):
+		self.assertEqual(round(self.v3, 7), Vector(0,0,0))
+		self.assertEqual(round(self.v3), Vector(0, 0, 0))
 
 	def test_absolute_value(self):
 		self.assertEqual(self.v1.__abs__(), self.v1.magnitude())
