@@ -1,6 +1,7 @@
 """vector.py - module to store the vector class"""
 
 import math
+from decimal import Decimal
 
 class Vector:
 	"""Class to represent a 3-Dimensional vector"""
@@ -36,7 +37,8 @@ class Vector:
 		              self.i * other_vector.j - self.j * other_vector.i)
 
 	def __str__(self):
-		return str(self.i) + 'i + ' + str(self.j) + 'j + ' + str(self.k) + 'k'
+		return '%.4E i + %.4E j + %.4Ek ' % (Decimal(self.i), Decimal(
+			self.j), Decimal(self.k))
 
 	def __eq__(self, other):
 		return self.i == other.i and self.j == other.j and self.k == other.k

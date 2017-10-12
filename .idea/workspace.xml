@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6f65d5ff-2678-4e23-a443-05af8e797839" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/orbit_plotter.py" afterPath="$PROJECT_DIR$/orbit_plotter.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gui_manager.py" afterPath="$PROJECT_DIR$/gui_manager.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vector.py" afterPath="$PROJECT_DIR$/vector.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -13,19 +15,19 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/Orbital_Calculator$Unittests_in_tests.coverage" NAME="Unittests in tests Coverage Results" MODIFIED="1506953666564" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/Orbital_Calculator$gui_manager.coverage" NAME="gui_manager Coverage Results" MODIFIED="1507668555732" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Orbital_Calculator$gui_manager.coverage" NAME="gui_manager Coverage Results" MODIFIED="1507827519517" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Orbital_Calculator$Unittests_in_planets_test_py.coverage" NAME="Unittests in planets_test.py Coverage Results" MODIFIED="1507059413558" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/Orbital_Calculator$Unittests_in_vector_test_py.coverage" NAME="Unittests in vector_test.py Coverage Results" MODIFIED="1507651481639" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/Orbital_Calculator$Unittests_in_vector_test_py.coverage" NAME="Unittests in vector_test.py Coverage Results" MODIFIED="1507811845554" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/Orbital_Calculator$orbit_plotter.coverage" NAME="orbit_plotter Coverage Results" MODIFIED="1507472064595" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Orbital_Calculator$Unittests_in_satellite_test_py.coverage" NAME="Unittests in satellite_test.py Coverage Results" MODIFIED="1507640287438" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/Orbital_Calculator$Unittests_in_satellite_test_py.coverage" NAME="Unittests in satellite_test.py Coverage Results" MODIFIED="1507812019666" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="orbit_plotter.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="orbit_plotter.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/orbit_plotter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1905">
-              <caret line="127" column="38" lean-forward="false" selection-start-line="127" selection-start-column="19" selection-end-line="127" selection-end-column="38" />
+            <state relative-caret-position="1800">
+              <caret line="120" column="58" lean-forward="true" selection-start-line="120" selection-start-column="58" selection-end-line="120" selection-end-column="75" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -33,11 +35,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gui_manager.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="gui_manager.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/gui_manager.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="728">
-              <caret line="223" column="8" lean-forward="true" selection-start-line="223" selection-start-column="8" selection-end-line="223" selection-end-column="32" />
+            <state relative-caret-position="330">
+              <caret line="419" column="47" lean-forward="false" selection-start-line="419" selection-start-column="47" selection-end-line="419" selection-end-column="47" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -48,8 +50,8 @@
       <file leaf-file-name="satellite.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/satellite.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="140" column="39" lean-forward="true" selection-start-line="140" selection-start-column="39" selection-end-line="140" selection-end-column="39" />
+            <state relative-caret-position="15">
+              <caret line="109" column="25" lean-forward="true" selection-start-line="109" selection-start-column="25" selection-end-line="109" selection-end-column="25" />
               <folding>
                 <element signature="e#147#173#0" expanded="true" />
               </folding>
@@ -60,7 +62,7 @@
       <file leaf-file-name="vector_test.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/vector_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="412">
+            <state relative-caret-position="630">
               <caret line="48" column="57" lean-forward="true" selection-start-line="48" selection-start-column="57" selection-end-line="48" selection-end-column="57" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
@@ -106,9 +108,11 @@
       <file leaf-file-name="vector.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="466">
-              <caret line="58" column="75" lean-forward="false" selection-start-line="58" selection-start-column="75" selection-end-line="58" selection-end-column="75" />
-              <folding />
+            <state relative-caret-position="345">
+              <caret line="40" column="36" lean-forward="false" selection-start-line="40" selection-start-column="36" selection-end-line="40" selection-end-column="36" />
+              <folding>
+                <element signature="e#52#63#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -137,12 +141,12 @@
         <option value="$PROJECT_DIR$/tests/vector_tests.py" />
         <option value="$PROJECT_DIR$/planets.py" />
         <option value="$PROJECT_DIR$/tests/planets_test.py" />
-        <option value="$PROJECT_DIR$/satellite.py" />
         <option value="$PROJECT_DIR$/tests/satellite_test.py" />
-        <option value="$PROJECT_DIR$/vector.py" />
         <option value="$PROJECT_DIR$/tests/vector_test.py" />
-        <option value="$PROJECT_DIR$/gui_manager.py" />
         <option value="$PROJECT_DIR$/orbit_plotter.py" />
+        <option value="$PROJECT_DIR$/vector.py" />
+        <option value="$PROJECT_DIR$/gui_manager.py" />
+        <option value="$PROJECT_DIR$/satellite.py" />
       </list>
     </option>
   </component>
@@ -345,8 +349,8 @@
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python.gui_manager" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in vector_test.py" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in satellite_test.py" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in satellite_test.py" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in vector_test.py" />
         <item index="3" class="java.lang.String" itemvalue="Python.orbit_plotter" />
         <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests in planets_test.py" />
       </list>
@@ -366,12 +370,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_in_satellite_test_py - 2017.10.05 at 12h 23m 04s.xml">
-      <configuration name="Unittests in satellite_test.py" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_in_satellite_test_py - 2017.10.05 at 12h 25m 30s.xml">
-      <configuration name="Unittests in satellite_test.py" configurationId="tests" />
-    </history-entry>
     <history-entry file="Unittests_in_satellite_test_py - 2017.10.07 at 08h 03m 44s.xml">
       <configuration name="Unittests in satellite_test.py" configurationId="tests" />
     </history-entry>
@@ -393,7 +391,13 @@
     <history-entry file="Unittests_in_satellite_test_py - 2017.10.10 at 08h 58m 07s.xml">
       <configuration name="Unittests in satellite_test.py" configurationId="tests" />
     </history-entry>
+    <history-entry file="Unittests_in_satellite_test_py - 2017.10.12 at 08h 40m 19s.xml">
+      <configuration name="Unittests in satellite_test.py" configurationId="tests" />
+    </history-entry>
     <history-entry file="Unittests_in_vector_test_py - 2017.10.10 at 12h 04m 41s.xml">
+      <configuration name="Unittests in vector_test.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_vector_test_py - 2017.10.12 at 08h 37m 25s.xml">
       <configuration name="Unittests in vector_test.py" configurationId="tests" />
     </history-entry>
   </component>
@@ -474,16 +478,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/satellite.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="140" column="39" lean-forward="true" selection-start-line="140" selection-start-column="39" selection-end-line="140" selection-end-column="39" />
-          <folding>
-            <element signature="e#147#173#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/satellite_test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="388">
@@ -496,15 +490,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/vector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="466">
-          <caret line="58" column="75" lean-forward="false" selection-start-line="58" selection-start-column="75" selection-end-line="58" selection-end-column="75" />
-          <folding />
+        <state relative-caret-position="345">
+          <caret line="40" column="36" lean-forward="false" selection-start-line="40" selection-start-column="36" selection-end-line="40" selection-end-column="36" />
+          <folding>
+            <element signature="e#52#63#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/vector_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="412">
+        <state relative-caret-position="630">
           <caret line="48" column="57" lean-forward="true" selection-start-line="48" selection-start-column="57" selection-end-line="48" selection-end-column="57" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
@@ -512,22 +508,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gui_manager.py">
+    <entry file="file://$PROJECT_DIR$/orbit_plotter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="728">
-          <caret line="223" column="8" lean-forward="true" selection-start-line="223" selection-start-column="8" selection-end-line="223" selection-end-column="32" />
+        <state relative-caret-position="1800">
+          <caret line="120" column="58" lean-forward="true" selection-start-line="120" selection-start-column="58" selection-end-line="120" selection-end-column="75" />
           <folding>
-            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/orbit_plotter.py">
+    <entry file="file://$PROJECT_DIR$/satellite.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1905">
-          <caret line="127" column="38" lean-forward="false" selection-start-line="127" selection-start-column="19" selection-end-line="127" selection-end-column="38" />
+        <state relative-caret-position="15">
+          <caret line="109" column="25" lean-forward="true" selection-start-line="109" selection-start-column="25" selection-end-line="109" selection-end-column="25" />
           <folding>
-            <element signature="e#0#39#0" expanded="true" />
+            <element signature="e#147#173#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gui_manager.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="419" column="47" lean-forward="false" selection-start-line="419" selection-start-column="47" selection-end-line="419" selection-end-column="47" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
