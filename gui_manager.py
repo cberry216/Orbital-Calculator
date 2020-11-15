@@ -350,13 +350,13 @@ class Window(QDialog):
         """plot: gets the values from the QLineEdits and plots the orbit on
         the canvas ***ADVANCED MODE***
         :return: None"""
-        radius_i_val = float(self.radius_i.text())
-        radius_j_val = float(self.radius_j.text())
-        radius_k_val = float(self.radius_k.text())
+        radius_i_val = float(0 if self.radius_i.text() == '' else self.radius_i.text())
+        radius_j_val = float(0 if self.radius_j.text() == '' else self.radius_j.text())
+        radius_k_val = float(0 if self.radius_k.text() == '' else self.radius_k.text())
 
-        velocity_i_val = float(self.velocity_i.text())
-        velocity_j_val = float(self.velocity_j.text())
-        velocity_k_val = float(self.velocity_k.text())
+        velocity_i_val = float(0 if self.velocity_i.text() == '' else self.velocity_i.text())
+        velocity_j_val = float(0 if self.velocity_j.text() == '' else self.velocity_j.text())
+        velocity_k_val = float(0 if self.velocity_k.text() == '' else self.velocity_k.text())
 
         satellite = Satellite(Vector(radius_i_val, radius_j_val,
                                      radius_k_val), Vector(velocity_i_val,
