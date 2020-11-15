@@ -103,17 +103,24 @@ class Satellite:
         :return: float"""
         if self.radius.magnitude() == round(self.get_radius_periapsis(), 0):
             return 0
-        return radians_to_degrees(math.acos((1 / self.get_eccentricity()) *
-                                            ((self.get_orbital_parameter()
-                                              / self.radius.magnitude()) - 1)))
+        try:
+            true = radians_to_degrees(math.acos((1 / self.get_eccentricity()) *
+                                                ((self.get_orbital_parameter()
+                                                / self.radius.magnitude()) - 1)))
+        except ValueError:
+            true = 0
+        return true
 
     def get_elevation_angle(self):
         """get_elevation_angle: return the elevation angle of the satellite
         (i.e. the angle between the velocity vector and the local horizontal plane in degrees
         :return: float"""
-        return radians_to_degrees(math.acos(self.get_angular_momentum() /
-                                            (self.radius.magnitude() *
-                                             self.velocity.magnitude())))
+
+        try:
+            elev = radians_to_degrees(math.acos(self.get_angular_momentum() / (self.radius.magnitude() * self.velocity.magnitude())))
+        except ValueError:
+            elev = 0
+        return elev
 
     def get_nodes_vector(self):
         """get_nodes_vector: returns the vector that points between the
