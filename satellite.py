@@ -207,9 +207,13 @@ class Satellite:
         the orbit at the specified angle, which is equal to arccos(h/rv).
         :param anomaly: angle at which the orbit is at in degrees
         :return: float"""
-        return radians_to_degrees(math.acos(self.get_angular_momentum() / (
+        try:
+            elev = radians_to_degrees(math.acos(self.get_angular_momentum() / (
             self.get_radius_at_angle(anomaly) * self.get_velocity_at_angle(
                 anomaly))))
+        except ValueError:
+            elev = 0
+        return elev
 
     def get_parallel_angle_at_angle(self, anomaly):
         """get_parallel_angle_at_angle: returns the angle between the
